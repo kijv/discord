@@ -1,0 +1,15 @@
+[env]
+CARGO_WORKSPACE_DIR = { value = "", relative = true }
+
+[alias]
+xtask = "run --package xtask --"
+
+[build]
+rustflags = [
+  "--cfg",
+  "tokio_unstable",
+  "-Zshare-generics=y", # make the current crate share its generic instantiations
+  "-Zthreads=8", # parallel frontend https://blog.rust-lang.org/2023/11/09/parallel-rustc.html
+  "-Csymbol-mangling-version=v0",
+]
+rustdocflags = []
